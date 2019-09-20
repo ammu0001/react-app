@@ -4,12 +4,12 @@ import "./App.css";
 
   const App = () => {
 
-    const APP_ID = "c5da39b4";
-    const APP_KEY = "5350b072c90deef413b5f573ed35ed89";
+    
+    const API_KEY = "5350b072c90deef413b5f573ed35ed89";
 
     const [recipes, setRecipes] = useState([]);
     const [search, setSearch] = useState("");
-    const [query, setQuery] = useState('chicken');
+    const [query, setQuery] = useState('Curry');
 
     useEffect( () => {
 
@@ -18,7 +18,7 @@ import "./App.css";
     }, [query]);
 
     const getRecipes = async () => {
-      const response = await fetch ('https://api.edamam.com/search?q=chicken&app_id=c5da39b4&app_key=5350b072c90deef413b5f573ed35ed89&from=0&to=12&calories=591-722&health=alcohol-free');
+      const response = await fetch ('http://cors-anywhere.herokuapp.com/https://api.edamam.com/search?q='+query+'&app_id=c5da39b4&app_key=5350b072c90deef413b5f573ed35ed89&from=0&to=12&calories=591-722&health=alcohol-free');
       const data = await response.json();
       setRecipes(data.hits);
       console.log(data.hits);
@@ -37,7 +37,7 @@ import "./App.css";
 
     return (
       <div className="App">
-        <h1 className= "head11"> React Application </h1>
+        <h1 className= "head11"> Recipe King </h1>
         <center>
         <form onSubmit={getSearch} className="search-form">
           <input  
@@ -46,7 +46,7 @@ import "./App.css";
                 value={search}
                 onChange={updateSearch }/>
           <button className="search-button" type="submit">
-            Search
+            Get Recipes
           </button>
         </form>
         </center>
@@ -60,7 +60,7 @@ import "./App.css";
                       source={recipe.recipe.source}
                       image={recipe.recipe.image} 
               />
-            ))}
+            ))};
         </div>
       </div>
     );

@@ -7,7 +7,7 @@ const Recipe = ({title,calories,source,image}) => {
 	return(
 
 			<div className= {style.recipe}>
-					<h1>{title}</h1>
+					<h4>{title}</h4>
 					<p>{calories}</p>
 					<p>{source}</p>
 					<img src={image} alt="" />
